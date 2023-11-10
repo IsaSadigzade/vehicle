@@ -1,10 +1,12 @@
 package com.coders.vehicle.controller;
 
+import com.coders.vehicle.dto.FuelTypeDTO;
 import com.coders.vehicle.entity.FuelTypeEntity;
 import com.coders.vehicle.service.FuelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -19,18 +21,18 @@ public class FuelTypeController {
     }
 
     @GetMapping
-    public List<FuelTypeEntity> list() {
+    public List<FuelTypeDTO> list() {
         return fuelTypeService.getAll();
     }
 
     @PostMapping("/add")
-    public void addFuelType(@RequestBody FuelTypeEntity fuelType) {
-        fuelTypeService.save(fuelType);
+    public void addFuelType(@RequestBody FuelTypeDTO fuelTypeDTO) {
+        fuelTypeService.save(fuelTypeDTO);
     }
 
     @PutMapping("/update/{id}")
-    public void updateFuelType(@PathVariable Integer id, @RequestBody FuelTypeEntity fuelType) {
-        fuelTypeService.update(id, fuelType);
+    public void updateFuelType(@PathVariable Integer id, @RequestBody FuelTypeDTO fuelTypeDTO) {
+        fuelTypeService.update(id, fuelTypeDTO);
     }
 
     @DeleteMapping("/delete/{id}")
