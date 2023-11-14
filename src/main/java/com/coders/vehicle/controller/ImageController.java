@@ -1,7 +1,6 @@
 package com.coders.vehicle.controller;
 
 import com.coders.vehicle.dto.ImageDTO;
-import com.coders.vehicle.entity.ImageEntity;
 import com.coders.vehicle.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
