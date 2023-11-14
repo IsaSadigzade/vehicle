@@ -1,2 +1,11 @@
-package com.coders.vehicle.dto;public class YearDTO {
+package com.coders.vehicle.dto;
+
+import lombok.Data;
+
+import java.time.Year;
+
+@Data
+public class YearDTO {
+    private Integer id;
+    private Year yearOfVehicle;
 }

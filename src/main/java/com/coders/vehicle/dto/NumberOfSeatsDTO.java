@@ -1,2 +1,13 @@
-package com.coders.vehicle.dto;public class NumberOfSeatsDTO {
+package com.coders.vehicle.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class NumberOfSeatsDTO {
+    private Integer id;
+    private String numberOfSeats;
 }

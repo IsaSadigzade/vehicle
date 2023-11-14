@@ -1,11 +1,11 @@
 package com.coders.vehicle.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum City {
-    ABADEH("Abadə"),
     AGDAM("Ağdam"),
     AGDASH("Ağdaş"),
-    AGDAS("Ağdaş"),
-    AGLAYAN("Ağlayan"),
     ASTARA("Astara"),
     BAKU("Bakı"),
     BABEK("Babək"),
@@ -18,7 +18,6 @@ public enum City {
     GORANBOY("Goranboy"),
     GOYCHAY("Göyçay"),
     GUBA("Quba"),
-    HACI_ZEYNALABDIN("Hacı Zeynalabdin"),
     JALILABAD("Cəlilabad"),
     KHACHMAZ("Xaçmaz"),
     KURDAEMIR("Qurdamır"),
@@ -40,7 +39,6 @@ public enum City {
     TOVUZ("Tovuz"),
     UJAR("Ucar"),
     YARDIMLI("Yardımlı"),
-    YARDYMLI("Yardımlı"),
     YEVLAKH("Yevlax"),
     ZARDAB("Zərdab");
 
@@ -48,9 +46,5 @@ public enum City {
 
     City(String cityName) {
         this.cityName = cityName;
-    }
-
-    public String getCityName() {
-        return cityName;
     }
 }

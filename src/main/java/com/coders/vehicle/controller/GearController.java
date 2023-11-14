@@ -1,6 +1,6 @@
 package com.coders.vehicle.controller;
 
-import com.coders.vehicle.entity.GearEntity;
+import com.coders.vehicle.dto.GearDTO;
 import com.coders.vehicle.service.GearService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,22 +11,26 @@ import java.util.List;
 @RequestMapping("/gear")
 public class GearController {
 
+    private final GearService gearService;
+
     @Autowired
-    private GearService gearService;
+    public GearController(GearService gearService) {
+        this.gearService = gearService;
+    }
 
     @GetMapping
-    public List<GearEntity> list() {
+    public List<GearDTO> list() {
         return gearService.getAll();
     }
 
     @PostMapping("/add")
-    public void addGear(@RequestBody GearEntity gear) {
-        gearService.save(gear);
+    public void addGear(@RequestBody GearDTO gearDTO) {
+        gearService.save(gearDTO);
     }
 
     @PutMapping("/update/{id}")
-    public void updateGear(@PathVariable Integer id, @RequestBody GearEntity gear) {
-        gearService.update(id, gear);
+    public void updateGear(@PathVariable Integer id, @RequestBody GearDTO gearDTO) {
+        gearService.update(id, gearDTO);
     }
 
     @DeleteMapping("/delete/{id}")

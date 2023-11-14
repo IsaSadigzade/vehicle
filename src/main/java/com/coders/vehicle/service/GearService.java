@@ -1,12 +1,12 @@
 package com.coders.vehicle.service;
 
-import com.coders.vehicle.entity.GearEntity;
+import com.coders.vehicle.dto.GearDTO;
 
 import java.util.List;
 
 public interface GearService {
-    void save(GearEntity gear);
-    void update(Integer id, GearEntity gear);
+    void save(GearDTO gearDTO);
+    void update(Integer id, GearDTO gearDTO);
     void delete(Integer id);
-    List<GearEntity> getAll();
+    List<GearDTO> getAll();
 }

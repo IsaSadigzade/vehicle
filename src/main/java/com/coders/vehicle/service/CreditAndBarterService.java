@@ -1,15 +1,15 @@
 package com.coders.vehicle.service;
 
-import com.coders.vehicle.dto.ExtrasDTO;
+import com.coders.vehicle.dto.CreditAndBarterDTO;
 
 import java.util.List;
 
-public interface ExtrasService {
-    void save(ExtrasDTO extrasDTO);
+public interface CreditAndBarterService {
+    void save(CreditAndBarterDTO creditAndBarterDTO);
 
-    void update(Integer id, ExtrasDTO extrasDTO);
+    void update(Integer id, CreditAndBarterDTO creditAndBarterDTO);
 
     void delete(Integer id);
 
-    List<ExtrasDTO> getAll();
+    List<CreditAndBarterDTO> getAll();
 }

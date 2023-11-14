@@ -1,7 +1,6 @@
 package com.coders.vehicle.service;
 
 import com.coders.vehicle.dto.FuelTypeDTO;
-import com.coders.vehicle.entity.FuelTypeEntity;
 
 import java.util.List;
 

@@ -1,12 +1,10 @@
 package com.coders.vehicle.controller;
 
 import com.coders.vehicle.dto.FuelTypeDTO;
-import com.coders.vehicle.entity.FuelTypeEntity;
 import com.coders.vehicle.service.FuelTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

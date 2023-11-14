@@ -1,7 +1,7 @@
 package com.coders.vehicle.repository;
 
-import com.coders.vehicle.entity.ExtrasEntity;
+import com.coders.vehicle.entity.CreditAndBarterEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ExtrasRepository extends CrudRepository<ExtrasEntity, Integer> {
+public interface CreditAndBarterRepository extends CrudRepository<CreditAndBarterEntity, Integer> {
 }

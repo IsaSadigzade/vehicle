@@ -1,6 +1,6 @@
 package com.coders.vehicle.controller;
 
-import com.coders.vehicle.entity.GearBoxEntity;
+import com.coders.vehicle.dto.GearBoxDTO;
 import com.coders.vehicle.service.GearBoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +10,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/gear-box")
 public class GearBoxController {
+    private final GearBoxService gearBoxService;
+
     @Autowired
-    private GearBoxService gearBoxService;
+    public GearBoxController(GearBoxService gearBoxService) {
+        this.gearBoxService = gearBoxService;
+    }
 
     @GetMapping
-    public List<GearBoxEntity> list() {
+    public List<GearBoxDTO> list() {
         return gearBoxService.getAll();
     }
 
     @PostMapping("/add")
-    public void addGearBox(@RequestBody GearBoxEntity gearBox) {
-        gearBoxService.save(gearBox);
+    public void addGearBox(@RequestBody GearBoxDTO gearBoxDTO) {
+        gearBoxService.save(gearBoxDTO);
     }
 
     @PutMapping("/update/{id}")
-    public void updateGearBox(@PathVariable Integer id, @RequestBody GearBoxEntity gearBox) {
-        gearBoxService.update(id, gearBox);
+    public void updateGearBox(@PathVariable Integer id, @RequestBody GearBoxDTO gearBoxDTO) {
+        gearBoxService.update(id, gearBoxDTO);
     }
 
     @DeleteMapping("/delete/{id}")

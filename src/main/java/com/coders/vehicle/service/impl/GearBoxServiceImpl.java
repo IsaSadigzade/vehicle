@@ -1,30 +1,42 @@
 package com.coders.vehicle.service.impl;
 
+import com.coders.vehicle.dto.GearBoxDTO;
 import com.coders.vehicle.entity.GearBoxEntity;
 import com.coders.vehicle.repository.GearBoxRepository;
 import com.coders.vehicle.service.GearBoxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class GearBoxServiceImpl implements GearBoxService {
-    @Autowired
-    private GearBoxRepository gearBoxRepository;
+    private final GearBoxRepository gearBoxRepository;
 
-    @Override
-    public void save(GearBoxEntity gearBox) {
-        gearBoxRepository.save(gearBox);
+    @Autowired
+    public GearBoxServiceImpl(GearBoxRepository gearBoxRepository) {
+        this.gearBoxRepository = gearBoxRepository;
     }
 
     @Override
-    public void update(Integer id, GearBoxEntity gearBox) {
-        GearBoxEntity existingGearBox = gearBoxRepository.findById(id).orElse(null);
-        if (existingGearBox != null) {
-            existingGearBox.setGearName(gearBox.getGearName());
-            gearBoxRepository.save(existingGearBox);
+    public List<GearBoxDTO> getAll() {
+        List<GearBoxEntity> entities = (List<GearBoxEntity>) gearBoxRepository.findAll();
+        List<GearBoxDTO> dtoList = new ArrayList<>();
+        for (GearBoxEntity e : entities) {
+            dtoList.add(toDto(e));
         }
+        return dtoList;
+    }
+
+    @Override
+    public void save(GearBoxDTO gearBoxDTO) {
+        gearBoxRepository.save(toEntity(gearBoxDTO));
+    }
+
+    @Override
+    public void update(Integer id, GearBoxDTO gearBoxDTO) {
+        gearBoxRepository.findById(id).ifPresent(existingGearBox -> gearBoxRepository.save(toEntity(gearBoxDTO)));
     }
 
     @Override
@@ -32,8 +44,19 @@ public class GearBoxServiceImpl implements GearBoxService {
         gearBoxRepository.deleteById(id);
     }
 
-    @Override
-    public List<GearBoxEntity> getAll() {
-        return (List<GearBoxEntity>) gearBoxRepository.findAll();
+
+
+    private GearBoxDTO toDto(GearBoxEntity entity) {
+        GearBoxDTO dto = new GearBoxDTO();
+        dto.setId(entity.getId());
+        dto.setGearName(entity.getGearName());
+        return dto;
+    }
+
+    private GearBoxEntity toEntity(GearBoxDTO dto) {
+        GearBoxEntity entity = new GearBoxEntity();
+        entity.setId(dto.getId());
+        entity.setGearName(dto.getGearName());
+        return entity;
     }
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ExtrasDTO {
+public class CreditAndBarterDTO {
     private Integer id;
     private boolean hasCredit;
     private boolean isBarterPossible;

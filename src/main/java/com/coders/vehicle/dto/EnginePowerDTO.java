@@ -1,20 +1,9 @@
-package com.coders.vehicle.entity;
+package com.coders.vehicle.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-public class EnginePowerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class EnginePowerDTO {
     private Integer id;
     private Integer powerAmount;
     private String powerUnit;
