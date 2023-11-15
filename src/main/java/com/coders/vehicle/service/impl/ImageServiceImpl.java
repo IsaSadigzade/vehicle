@@ -1,8 +1,11 @@
 package com.coders.vehicle.service.impl;
 
+import com.coders.vehicle.dto.ImageDTO;
 import com.coders.vehicle.entity.ImageEntity;
 import com.coders.vehicle.repository.ImageRepository;
 import com.coders.vehicle.service.ImageService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -41,9 +44,11 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public byte[] downloadImage(Integer imageId) {
-        return imageRepository.findById(imageId)
-                .map(ImageEntity::getImageData)
-                .orElse(null);
+        ImageEntity entity = imageRepository.findById(imageId).get();
+        return entity.getImageData();
+//        return imageRepository.findById(imageId)
+//                .map(ImageEntity::getImageData)
+//                .orElse(null);
     }
 
     @Override
@@ -55,18 +60,26 @@ public class ImageServiceImpl implements ImageService {
         return imageIds;
     }
 
+    public List<byte[]> getByBytes() {
+        List<byte[]> imageIds = new ArrayList<>();
+        for (ImageEntity imageEntity : imageRepository.findAll()) {
+            imageIds.add(imageEntity.getImageData());
+        }
+        return imageIds;
+    }
+
     @Override
     public void deleteImage(Integer imageId) {
         imageRepository.deleteById(imageId);
     }
 
-//    @Contract("_ -> new")
-//    private @NotNull ImageDTO toDto(@NotNull ImageEntity entity) {
-//        return new ImageDTO(entity.getId(), entity.getImageData());
-//    }
-//
-//    @Contract("_ -> new")
-//    private @NotNull ImageEntity toEntity(@NotNull ImageDTO dto) {
-//        return new ImageEntity(dto.getId(), dto.getImageData());
-//    }
+    @Contract("_ -> new")
+    public static @NotNull ImageDTO toDto(@NotNull ImageEntity entity) {
+        return new ImageDTO(entity.getId(), entity.getImageData().toString());
+    }
+
+    @Contract("_ -> new")
+    public static @NotNull ImageEntity toEntity(@NotNull ImageDTO dto) {
+        return new ImageEntity(dto.getId(), dto.getImageData().getBytes());
+    }
 }

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EngineCapacityDTO {
+public class ModelResponseDTO {
     private Integer id;
-    private Integer capacity;
+    private String modelName;
 }

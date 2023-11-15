@@ -47,12 +47,12 @@ public class CreditAndBarterServiceImpl implements CreditAndBarterService {
     }
 
     @Contract("_ -> new")
-    private @NotNull CreditAndBarterDTO toDto(@NotNull CreditAndBarterEntity entity) {
+    public static @NotNull CreditAndBarterDTO toDto(@NotNull CreditAndBarterEntity entity) {
         return new CreditAndBarterDTO(entity.getId(), entity.isHasCredit(), entity.isBarterPossible());
     }
 
     @Contract("_ -> new")
-    private @NotNull CreditAndBarterEntity toEntity(@NotNull CreditAndBarterDTO dto) {
+    public static @NotNull CreditAndBarterEntity toEntity(@NotNull CreditAndBarterDTO dto) {
         return new CreditAndBarterEntity(dto.getId(), dto.isHasCredit(), dto.isBarterPossible());
     }
 }

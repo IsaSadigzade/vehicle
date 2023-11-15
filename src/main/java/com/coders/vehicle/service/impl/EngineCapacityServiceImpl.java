@@ -4,6 +4,7 @@ import com.coders.vehicle.dto.EngineCapacityDTO;
 import com.coders.vehicle.entity.EngineCapacityEntity;
 import com.coders.vehicle.repository.EngineCapacityRepository;
 import com.coders.vehicle.service.EngineCapacityService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,17 +46,11 @@ public class EngineCapacityServiceImpl implements EngineCapacityService {
         return dtoList;
     }
 
-    private EngineCapacityDTO toDto(EngineCapacityEntity entity) {
-        EngineCapacityDTO dto = new EngineCapacityDTO();
-        dto.setId(entity.getId());
-        dto.setCapacity(entity.getCapacity());
-        return dto;
+    public static @NotNull EngineCapacityDTO toDto(@NotNull EngineCapacityEntity entity) {
+        return new EngineCapacityDTO(entity.getId(), entity.getCapacity());
     }
 
-    private EngineCapacityEntity toEntity(EngineCapacityDTO dto) {
-        EngineCapacityEntity entity = new EngineCapacityEntity();
-        entity.setId(dto.getId());
-        entity.setCapacity(dto.getCapacity());
-        return entity;
+    public static @NotNull EngineCapacityEntity toEntity(@NotNull EngineCapacityDTO dto) {
+        return new EngineCapacityEntity(dto.getId(), dto.getCapacity());
     }
 }

@@ -45,17 +45,11 @@ public class CountryOfOriginServiceImpl implements CountryOfOriginService {
         return dtoList;
     }
 
-    private @NotNull CountryOfOriginDTO toDto(@NotNull CountryOfOriginEntity entity) {
-        CountryOfOriginDTO dto = new CountryOfOriginDTO();
-        dto.setId(entity.getId());
-        dto.setCountryName(entity.getCountryName());
-        return dto;
+    public static @NotNull CountryOfOriginDTO toDto(@NotNull CountryOfOriginEntity entity) {
+        return new CountryOfOriginDTO(entity.getId(), entity.getCountryName());
     }
 
-    private @NotNull CountryOfOriginEntity toEntity(@NotNull CountryOfOriginDTO dto) {
-        CountryOfOriginEntity entity = new CountryOfOriginEntity();
-        entity.setId(dto.getId());
-        entity.setCountryName(dto.getCountryName());
-        return entity;
+    public static @NotNull CountryOfOriginEntity toEntity(@NotNull CountryOfOriginDTO dto) {
+        return new CountryOfOriginEntity(dto.getId(), dto.getCountryName());
     }
 }

@@ -47,12 +47,12 @@ public class VinCodeServiceImpl implements VinCodeService {
     }
 
     @Contract("_ -> new")
-    private @NotNull VinCodeDTO toDto(@NotNull VinCodeEntity entity) {
+    public static @NotNull VinCodeDTO toDto(@NotNull VinCodeEntity entity) {
         return new VinCodeDTO(entity.getId(), entity.getVinCode());
     }
 
     @Contract("_ -> new")
-    private @NotNull VinCodeEntity toEntity(@NotNull VinCodeDTO dto) {
+    public static @NotNull VinCodeEntity toEntity(@NotNull VinCodeDTO dto) {
         return new VinCodeEntity(dto.getId(), dto.getVinCode());
     }
 }

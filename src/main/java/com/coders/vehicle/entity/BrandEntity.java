@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class BrandEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "brand_entity_id")
+//    @Column(name = "brand_entity_id")
     private Integer id;
     private String brandName;
 }

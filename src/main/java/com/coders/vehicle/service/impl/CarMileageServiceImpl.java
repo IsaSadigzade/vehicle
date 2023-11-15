@@ -47,12 +47,12 @@ public class CarMileageServiceImpl implements CarMileageService {
     }
 
     @Contract("_ -> new")
-    private @NotNull CarMileageDTO toDto(@NotNull CarMileageEntity entity) {
+    public static @NotNull CarMileageDTO toDto(@NotNull CarMileageEntity entity) {
         return new CarMileageDTO(entity.getId(), entity.getMileageValue(), entity.getMileageUnit());
     }
 
     @Contract("_ -> new")
-    private @NotNull CarMileageEntity toEntity(@NotNull CarMileageDTO dto) {
+    public static @NotNull CarMileageEntity toEntity(@NotNull CarMileageDTO dto) {
         return new CarMileageEntity(dto.getId(), dto.getMileageValue(), dto.getMileageUnit());
     }
 }

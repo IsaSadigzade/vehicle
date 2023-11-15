@@ -47,12 +47,12 @@ public class ColourServiceImpl implements ColourService {
     }
 
     @Contract("_ -> new")
-    private @NotNull ColourDTO toDto(@NotNull ColourEntity entity) {
+    public static @NotNull ColourDTO toDto(@NotNull ColourEntity entity) {
         return new ColourDTO(entity.getId(), entity.getColourName());
     }
 
     @Contract("_ -> new")
-    private @NotNull ColourEntity toEntity(@NotNull ColourDTO dto) {
+    public static @NotNull ColourEntity toEntity(@NotNull ColourDTO dto) {
         return new ColourEntity(dto.getId(), dto.getColourName());
     }
 }

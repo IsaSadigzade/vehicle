@@ -4,6 +4,7 @@ import com.coders.vehicle.dto.EnginePowerDTO;
 import com.coders.vehicle.entity.EnginePowerEntity;
 import com.coders.vehicle.repository.EnginePowerRepository;
 import com.coders.vehicle.service.EnginePowerService;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,19 +46,13 @@ public class EnginePowerServiceImpl implements EnginePowerService {
         return dtoList;
     }
 
-    private EnginePowerDTO toDto(@NotNull EnginePowerEntity entity) {
-        EnginePowerDTO dto = new EnginePowerDTO();
-        dto.setId(entity.getId());
-        dto.setPowerAmount(entity.getPowerAmount());
-        dto.setPowerUnit(entity.getPowerUnit());
-        return dto;
+    @Contract("_ -> new")
+    public static @NotNull EnginePowerDTO toDto(@NotNull EnginePowerEntity entity) {
+        return new EnginePowerDTO(entity.getId(), entity.getPowerAmount(), entity.getPowerUnit());
     }
 
-    private EnginePowerEntity toEntity(@NotNull EnginePowerDTO dto) {
-        EnginePowerEntity entity = new EnginePowerEntity();
-        entity.setId(dto.getId());
-        entity.setPowerAmount(dto.getPowerAmount());
-        entity.setPowerUnit(dto.getPowerUnit());
-        return entity;
+    @Contract("_ -> new")
+    public static @NotNull EnginePowerEntity toEntity(@NotNull EnginePowerDTO dto) {
+        return new EnginePowerEntity(dto.getId(), dto.getPowerAmount(), dto.getPowerUnit());
     }
 }

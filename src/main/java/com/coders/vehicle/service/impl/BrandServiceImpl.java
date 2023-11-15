@@ -46,18 +46,12 @@ public class BrandServiceImpl implements BrandService {
         return dtoList;
     }
     @Contract("_ -> new")
-    private @NotNull BrandDTO toDto(@NotNull BrandEntity entity) {
-        BrandDTO dto = new BrandDTO();
-        dto.setId(entity.getId());
-        dto.setBrandName(entity.getBrandName());
-        return dto;
+    public static @NotNull BrandDTO toDto(@NotNull BrandEntity entity) {
+        return new BrandDTO(entity.getId(), entity.getBrandName());
     }
 
     @Contract("_ -> new")
-    private @NotNull BrandEntity toEntity(@NotNull BrandDTO dto) {
-        BrandEntity entity = new BrandEntity();
-        entity.setId(dto.getId());
-        entity.setBrandName(dto.getBrandName());
-        return entity;
+    public static @NotNull BrandEntity toEntity(@NotNull BrandDTO dto) {
+        return new BrandEntity(dto.getId(), dto.getBrandName());
     }
 }

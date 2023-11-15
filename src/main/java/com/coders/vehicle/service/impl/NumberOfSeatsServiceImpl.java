@@ -47,12 +47,12 @@ public class NumberOfSeatsServiceImpl implements NumberOfSeatsService {
     }
 
     @Contract("_ -> new")
-    private @NotNull NumberOfSeatsDTO toDto(@NotNull NumberOfSeatsEntity entity) {
+    public static @NotNull NumberOfSeatsDTO toDto(@NotNull NumberOfSeatsEntity entity) {
         return new NumberOfSeatsDTO(entity.getId(), entity.getNumberOfSeats());
     }
 
     @Contract("_ -> new")
-    private @NotNull NumberOfSeatsEntity toEntity(@NotNull NumberOfSeatsDTO dto) {
+    public static @NotNull NumberOfSeatsEntity toEntity(@NotNull NumberOfSeatsDTO dto) {
         return new NumberOfSeatsEntity(dto.getId(), dto.getNumberOfSeats());
     }
 }

@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.YearDTO;
 import com.coders.vehicle.entity.YearEntity;
 import com.coders.vehicle.repository.YearRepository;
 import com.coders.vehicle.service.YearService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,17 +47,13 @@ public class YearServiceImpl implements YearService {
         return dtoList;
     }
 
-    private YearDTO toDto(YearEntity entity) {
-        YearDTO dto = new YearDTO();
-        dto.setId(entity.getId());
-        dto.setYearOfVehicle(entity.getYearOfVehicle());
-        return dto;
+    @Contract("_ -> new")
+    public static @NotNull YearDTO toDto(@NotNull YearEntity entity) {
+        return new YearDTO(entity.getId(), entity.getYearOfVehicle());
     }
 
-    private YearEntity toEntity(YearDTO dto) {
-        YearEntity entity = new YearEntity();
-        entity.setId(dto.getId());
-        entity.setYearOfVehicle(dto.getYearOfVehicle());
-        return entity;
+    @Contract("_ -> new")
+    public static @NotNull YearEntity toEntity(@NotNull YearDTO dto) {
+        return new YearEntity(dto.getId(), dto.getYearOfVehicle());
     }
 }

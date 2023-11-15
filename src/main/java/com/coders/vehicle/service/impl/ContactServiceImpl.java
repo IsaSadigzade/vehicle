@@ -47,12 +47,12 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Contract("_ -> new")
-    private @NotNull ContactDTO toDto(@NotNull ContactEntity entity) {
+    public static @NotNull ContactDTO toDto(@NotNull ContactEntity entity) {
         return new ContactDTO(entity.getId(), entity.getName(), entity.getCity(), entity.getEmail(), entity.getPhoneNumber());
     }
 
     @Contract("_ -> new")
-    private @NotNull ContactEntity toEntity(@NotNull ContactDTO dto) {
+    public static @NotNull ContactEntity toEntity(@NotNull ContactDTO dto) {
         return new ContactEntity(dto.getId(), dto.getName(), dto.getCity(), dto.getEmail(), dto.getPhoneNumber());
     }
 

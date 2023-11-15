@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.CarOwnersDTO;
 import com.coders.vehicle.entity.CarOwnersEntity;
 import com.coders.vehicle.repository.CarOwnersRepository;
 import com.coders.vehicle.service.CarOwnersService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +46,13 @@ public class CarOwnersServiceImpl implements CarOwnersService {
         return dtoList;
     }
 
-    private CarOwnersDTO toDto(CarOwnersEntity entity) {
+    @Contract("_ -> new")
+    public static @NotNull CarOwnersDTO toDto(@NotNull CarOwnersEntity entity) {
         return new CarOwnersDTO(entity.getId(), entity.getWhichOwnerOfCar());
     }
 
-    private CarOwnersEntity toEntity(CarOwnersDTO dto) {
+    @Contract("_ -> new")
+    public static @NotNull CarOwnersEntity toEntity(@NotNull CarOwnersDTO dto) {
         return new CarOwnersEntity(dto.getId(), dto.getWhichOwnerOfCar());
     }
 }

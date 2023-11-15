@@ -47,12 +47,12 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Contract("_ -> new")
-    private @NotNull PriceDTO toDto(@NotNull PriceEntity entity) {
+    public static @NotNull PriceDTO toDto(@NotNull PriceEntity entity) {
         return new PriceDTO(entity.getId(), entity.getAmount(), entity.getCurrency());
     }
 
     @Contract("_ -> new")
-    private @NotNull PriceEntity toEntity(@NotNull PriceDTO dto) {
+    public static @NotNull PriceEntity toEntity(@NotNull PriceDTO dto) {
         return new PriceEntity(dto.getId(), dto.getAmount(),dto.getCurrency());
     }
 }

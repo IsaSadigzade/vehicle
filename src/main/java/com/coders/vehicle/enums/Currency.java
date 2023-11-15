@@ -6,9 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Currency {
+    AZN("azn"),
     USD("usd"),
-    EUR("eur"),
-    AZN("azn");
+    EUR("eur");
+
 
     private String currencyName;
 }

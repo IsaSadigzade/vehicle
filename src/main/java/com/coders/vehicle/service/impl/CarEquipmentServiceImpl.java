@@ -47,7 +47,7 @@ public class CarEquipmentServiceImpl implements CarEquipmentService {
     }
 
     @Contract("_ -> new")
-    private @NotNull CarEquipmentDTO toDto(@NotNull CarEquipmentEntity entity) {
+    public static @NotNull CarEquipmentDTO toDto(@NotNull CarEquipmentEntity entity) {
         return new CarEquipmentDTO(
                 entity.getId(),
                 entity.isAlloyWheels(),
@@ -67,7 +67,7 @@ public class CarEquipmentServiceImpl implements CarEquipmentService {
     }
 
     @Contract("_ -> new")
-    private @NotNull CarEquipmentEntity toEntity(@NotNull CarEquipmentDTO dto) {
+    public static @NotNull CarEquipmentEntity toEntity(@NotNull CarEquipmentDTO dto) {
         return new CarEquipmentEntity(
                 dto.getId(),
                 dto.isAlloyWheels(),

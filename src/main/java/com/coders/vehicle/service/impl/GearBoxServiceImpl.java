@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.GearBoxDTO;
 import com.coders.vehicle.entity.GearBoxEntity;
 import com.coders.vehicle.repository.GearBoxRepository;
 import com.coders.vehicle.service.GearBoxService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,17 +48,13 @@ public class GearBoxServiceImpl implements GearBoxService {
 
 
 
-    private GearBoxDTO toDto(GearBoxEntity entity) {
-        GearBoxDTO dto = new GearBoxDTO();
-        dto.setId(entity.getId());
-        dto.setGearName(entity.getGearName());
-        return dto;
+    @Contract("_ -> new")
+    public static @NotNull GearBoxDTO toDto(@NotNull GearBoxEntity entity) {
+        return new GearBoxDTO(entity.getId(), entity.getGearName());
     }
 
-    private GearBoxEntity toEntity(GearBoxDTO dto) {
-        GearBoxEntity entity = new GearBoxEntity();
-        entity.setId(dto.getId());
-        entity.setGearName(dto.getGearName());
-        return entity;
+    @Contract("_ -> new")
+    public static @NotNull GearBoxEntity toEntity(@NotNull GearBoxDTO dto) {
+        return new GearBoxEntity(dto.getId(), dto.getGearName());
     }
 }

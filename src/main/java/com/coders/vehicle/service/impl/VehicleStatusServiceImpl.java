@@ -48,12 +48,12 @@ public class VehicleStatusServiceImpl implements VehicleStatusService {
     }
 
     @Contract("_ -> new")
-    private @NotNull VehicleStatusDTO toDto(@NotNull VehicleStatusEntity entity) {
+    public static @NotNull VehicleStatusDTO toDto(@NotNull VehicleStatusEntity entity) {
         return new VehicleStatusDTO(entity.getId(), entity.isHasDamage(), entity.isColourChanged(), entity.isCrashed());
     }
 
     @Contract("_ -> new")
-    private @NotNull VehicleStatusEntity toEntity(@NotNull VehicleStatusDTO dto) {
+    public static @NotNull VehicleStatusEntity toEntity(@NotNull VehicleStatusDTO dto) {
         return new VehicleStatusEntity(dto.getId(), dto.isHasDamage(), dto.isColourChanged(), dto.isCrashed());
     }
 }

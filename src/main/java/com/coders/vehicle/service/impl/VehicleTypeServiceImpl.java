@@ -48,12 +48,12 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
     }
 
     @Contract("_ -> new")
-    private @NotNull VehicleTypeDTO toDto(@NotNull VehicleTypeEntity entity) {
+    public static @NotNull VehicleTypeDTO toDto(@NotNull VehicleTypeEntity entity) {
         return new VehicleTypeDTO(entity.getId(), entity.getVehicleType());
     }
 
     @Contract("_ -> new")
-    private @NotNull VehicleTypeEntity toEntity(@NotNull VehicleTypeDTO dto) {
+    public static @NotNull VehicleTypeEntity toEntity(@NotNull VehicleTypeDTO dto) {
         return new VehicleTypeEntity(dto.getId(), dto.getVehicleType());
     }
 }

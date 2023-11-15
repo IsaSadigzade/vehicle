@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.FuelTypeDTO;
 import com.coders.vehicle.entity.FuelTypeEntity;
 import com.coders.vehicle.repository.FuelTypeRepository;
 import com.coders.vehicle.service.FuelTypeService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,17 +47,13 @@ public class FuelTypeServiceImpl implements FuelTypeService {
         fuelTypeRepository.deleteById(id);
     }
 
-    private FuelTypeDTO toDto(FuelTypeEntity entity) {
-        FuelTypeDTO dto = new FuelTypeDTO();
-        dto.setId(entity.getId());
-        dto.setFuelTypeName(entity.getFuelTypeName());
-        return dto;
+    @Contract("_ -> new")
+    public static @NotNull FuelTypeDTO toDto(@NotNull FuelTypeEntity entity) {
+        return new FuelTypeDTO(entity.getId(), entity.getFuelTypeName());
     }
 
-    private FuelTypeEntity toEntity(FuelTypeDTO dto) {
-        FuelTypeEntity entity = new FuelTypeEntity();
-        entity.setId(dto.getId());
-        entity.setFuelTypeName(dto.getFuelTypeName());
-        return entity;
+    @Contract("_ -> new")
+    public static @NotNull FuelTypeEntity toEntity(@NotNull FuelTypeDTO dto) {
+        return new FuelTypeEntity(dto.getId(), dto.getFuelTypeName());
     }
 }

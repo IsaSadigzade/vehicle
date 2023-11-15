@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.GearDTO;
 import com.coders.vehicle.entity.GearEntity;
 import com.coders.vehicle.repository.GearRepository;
 import com.coders.vehicle.service.GearService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,17 +47,13 @@ public class GearServiceImpl implements GearService {
         return dtoList;
     }
 
-    private GearDTO toDto(GearEntity entity) {
-        GearDTO dto = new GearDTO();
-        dto.setId(entity.getId());
-        dto.setGearType(entity.getGearType());
-        return dto;
+    @Contract("_ -> new")
+    public static @NotNull GearDTO toDto(@NotNull GearEntity entity) {
+        return new GearDTO(entity.getId(), entity.getGearType());
     }
 
-    private GearEntity toEntity(GearDTO dto) {
-        GearEntity entity = new GearEntity();
-        entity.setId(dto.getId());
-        entity.setGearType(dto.getGearType());
-        return entity;
+    @Contract("_ -> new")
+    public static @NotNull GearEntity toEntity(@NotNull GearDTO dto) {
+        return new GearEntity(dto.getId(), dto.getGearType());
     }
 }

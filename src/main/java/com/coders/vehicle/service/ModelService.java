@@ -9,4 +9,5 @@ public interface ModelService {
     void update(Integer id, ModelDTO modelDTO);
     void delete(Integer id);
     List<ModelDTO> getAll();
+    List<ModelDTO> getAllByBrandId(Integer id);
 }

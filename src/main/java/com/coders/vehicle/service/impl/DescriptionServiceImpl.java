@@ -4,6 +4,8 @@ import com.coders.vehicle.dto.DescriptionDTO;
 import com.coders.vehicle.entity.DescriptionEntity;
 import com.coders.vehicle.repository.DescriptionRepository;
 import com.coders.vehicle.service.DescriptionService;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +46,13 @@ public class DescriptionServiceImpl implements DescriptionService {
         return dtoList;
     }
 
-    private DescriptionDTO toDto(DescriptionEntity entity) {
+    @Contract("_ -> new")
+    public static @NotNull DescriptionDTO toDto(@NotNull DescriptionEntity entity) {
         return new DescriptionDTO(entity.getId(), entity.getDescription());
     }
 
-    private DescriptionEntity toEntity(DescriptionDTO dto) {
+    @Contract("_ -> new")
+    public static @NotNull DescriptionEntity toEntity(@NotNull DescriptionDTO dto) {
         return new DescriptionEntity(dto.getId(), dto.getDescription());
     }
 }

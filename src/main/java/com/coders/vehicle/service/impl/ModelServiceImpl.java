@@ -1,6 +1,5 @@
 package com.coders.vehicle.service.impl;
 
-import com.coders.vehicle.dto.BrandDTO;
 import com.coders.vehicle.dto.ModelDTO;
 import com.coders.vehicle.entity.BrandEntity;
 import com.coders.vehicle.entity.ModelEntity;
@@ -48,37 +47,33 @@ public class ModelServiceImpl implements ModelService {
         return dtoList;
     }
 
-    @Contract("_ -> new")
-    private @NotNull ModelDTO toDto(@NotNull ModelEntity entity) {
-        ModelDTO dto = new ModelDTO();
-        dto.setId(entity.getId());
-        dto.setModelName(entity.getModelName());
-        if (entity.getBrandEntity() != null) {
-            dto.setBrandDTO(toBrandDto(entity.getBrandEntity()));
+    @Override
+    public List<ModelDTO> getAllByBrandId(Integer id) {
+        BrandEntity brandEntity = new BrandEntity();
+        brandEntity.setId(id);
+        List<ModelEntity> entities = modelRepository.findAllByBrandEntity(brandEntity);
+        List<ModelDTO> dtoList = new ArrayList<>();
+        for (ModelEntity e : entities) {
+            dtoList.add(toDto(e));
         }
-        return dto;
+        return dtoList;
     }
 
     @Contract("_ -> new")
-    private @NotNull ModelEntity toEntity(@NotNull ModelDTO dto) {
-        ModelEntity entity = new ModelEntity();
-        entity.setId(dto.getId());
-        entity.setModelName(dto.getModelName());
-        if (dto.getBrandDTO() != null) {
-            entity.setBrandEntity(toBrandEntity(dto.getBrandDTO()));
-        }
-        return entity;
+    public static @NotNull ModelDTO toDto(@NotNull ModelEntity entity) {
+        return new ModelDTO(
+                entity.getId(),
+                entity.getModelName(),
+                BrandServiceImpl.toDto(entity.getBrandEntity())
+        );
     }
-    private @NotNull BrandDTO toBrandDto(@NotNull BrandEntity brandEntity) {
-        BrandDTO brandDTO = new BrandDTO();
-        brandDTO.setId(brandEntity.getId());
-        brandDTO.setBrandName(brandEntity.getBrandName());
-        return brandDTO;
-    }
-    private @NotNull BrandEntity toBrandEntity(@NotNull BrandDTO brandDTO) {
-        BrandEntity brandEntity = new BrandEntity();
-        brandEntity.setId(brandDTO.getId());
-        brandEntity.setBrandName(brandDTO.getBrandName());
-        return brandEntity;
+
+    @Contract("_ -> new")
+    public static @NotNull ModelEntity toEntity(@NotNull ModelDTO dto) {
+        return new ModelEntity(
+                dto.getId(),
+                dto.getModelName(),
+                BrandServiceImpl.toEntity(dto.getBrandDTO())
+        );
     }
 }

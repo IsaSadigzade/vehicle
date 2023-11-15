@@ -22,6 +22,11 @@ public class ModelController {
         return modelService.getAll();
     }
 
+    @GetMapping("/brand/{id}")
+    public List<ModelDTO> listByID(@PathVariable Integer id) {
+        return modelService.getAllByBrandId(id);
+    }
+
     @PostMapping("/add")
     public void addYear(@RequestBody ModelDTO modelDTO) {
         modelService.save(modelDTO);
@@ -36,4 +41,5 @@ public class ModelController {
     public void deleteYear(@PathVariable Integer id) {
         modelService.delete(id);
     }
+
 }
